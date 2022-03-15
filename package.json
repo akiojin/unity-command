@@ -1,6 +1,6 @@
 {
   "name": "unity-command",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "A package to control Unity from the command line.",
   "main": "dist/index.js",
   "scripts": {
@@ -11,7 +11,8 @@
     "url": "git+https://github.com/akiojin/unity-command.git"
   },
   "keywords": [
-    "unity", "unity3d"
+    "unity",
+    "unity3d"
   ],
   "author": "akiojin",
   "license": "MIT",
