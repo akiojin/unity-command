@@ -66,6 +66,47 @@ class UnityCommandBuilder {
             }
         }
     }
+    DisableGPUSkinning() {
+        this.AddCommand('-disable-gpu-skinning');
+    }
+    SetExecuteMethod(executeMethod) {
+        this.AddCommand('-executeMethod', executeMethod);
+    }
+    SetJobWorkerCount(count) {
+        this.AddCommand('-job-worker-count', count.toString());
+    }
+    SetLogFile(logFile) {
+        this.AddCommand('-logFile', logFile);
+    }
+    DisableUPM() {
+        this.AddCommand('-noUpm');
+    }
+    Activation(username, password) {
+        this.AddCommand('-username', username);
+        this.AddCommand('-password', password);
+    }
+    SetProjectPath(projectPath) {
+        this.AddCommand('-projectPath', projectPath);
+    }
+    EnableReleaseCodeOptimization() {
+        this.AddCommand('-releaseCodeOptimization');
+    }
+    // Batch mode arguments
+    EnableAPIUpdater() {
+        this.AddCommand('-accept-apiupdate');
+    }
+    // Build Arguments
+    SetBuildTarget(target) {
+        this.AddCommand('-buildTarget', target);
+    }
+    // Cache server arguments
+    EnableCacheServer(endpoint) {
+        this.AddCommand('-EnableCacheServer');
+        this.AddCommand('-cacheServerEndpoint', endpoint);
+    }
+    SetOutputPath(outputPath) {
+        this.AddCommand('-outputPath', outputPath);
+    }
     Build() {
         return this.args;
     }
