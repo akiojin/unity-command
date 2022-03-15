@@ -37,7 +37,7 @@ export class UnityCommandBuilder
         this.AddCommand('-quit')
         this.AddCommand('-batchmode')
         this.AddCommand('-nographics')
-        this.AddCommand('silent-crashes')
+        this.AddCommand('-silent-crashes')
     }
 
     AddCommand(command: string): void

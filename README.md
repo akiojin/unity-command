@@ -30,6 +30,14 @@ npm install unity-command
 `string`: Unity app path (e.g. /Applications/Unity/Hub/Editor/2021.2.7f1/Unity.app/Contents/MacOS/Unity)
 
 ### class `UnityCommandBuilder`
+
+The following parameters have already been added by default when the instance is created, so they do not need to be added.
+
+- `-quit`
+- `-batchmode`
+- `-nographics`
+- `-silent-crashes`
+
 #### Method `AddCommand()`
 |Name|Type|Description|
 |:--|:--|:--|
