@@ -10,9 +10,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Unity = void 0;
+exports.UnityCommandBuilder = exports.Unity = void 0;
 var unity_1 = __nccwpck_require__(327);
 Object.defineProperty(exports, "Unity", ({ enumerable: true, get: function () { return __importDefault(unity_1).default; } }));
+var unity_2 = __nccwpck_require__(327);
+Object.defineProperty(exports, "UnityCommandBuilder", ({ enumerable: true, get: function () { return unity_2.UnityCommandBuilder; } }));
 
 
 /***/ }),
@@ -22,6 +24,7 @@ Object.defineProperty(exports, "Unity", ({ enumerable: true, get: function () { 
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.UnityCommandBuilder = void 0;
 const fs_1 = __nccwpck_require__(147);
 class Unity {
     static GetExecutePath(os, unityVersion) {
@@ -44,6 +47,25 @@ class Unity {
     }
 }
 exports["default"] = Unity;
+class UnityCommandBuilder {
+    constructor() {
+        this.args = [];
+        this.AddCommand('-quit');
+        this.AddCommand('-batchmode');
+        this.AddCommand('-nographics');
+        this.AddCommand('silent-crashes');
+    }
+    AddCommand(command, param) {
+        this.args.push(command);
+        if (param != null) {
+            this.args.push(param);
+        }
+    }
+    Build() {
+        return this.args;
+    }
+}
+exports.UnityCommandBuilder = UnityCommandBuilder;
 
 
 /***/ }),

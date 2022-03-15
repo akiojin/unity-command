@@ -27,3 +27,33 @@ export default class Unity
         return result.groups.version
     }
 }
+
+export class UnityCommandBuilder
+{
+    args: string[] = []
+
+    constructor()
+    {
+        this.AddCommand('-quit')
+        this.AddCommand('-batchmode')
+        this.AddCommand('-nographics')
+        this.AddCommand('silent-crashes')
+    }
+
+    AddCommand(command: string): void
+    AddCommand(command: string, param: string): void
+
+    AddCommand(command: string, param?: string): void
+    {
+        this.args.push(command)
+
+        if (param != null) {
+            this.args.push(param)
+        }
+    }
+
+    Build(): string[]
+    {
+        return this.args
+    }
+}
