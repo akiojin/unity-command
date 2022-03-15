@@ -10,7 +10,7 @@ npm install unity-command
 
 ## Usage
 ### class `Unity`
-#### Static Method `GetVersion()`
+#### Static Method `GetVersion(projectDirectory: string): string`
 ##### Arguments
 |Name|Type|Description|
 |:--|:--|:--|
@@ -19,7 +19,7 @@ npm install unity-command
 ##### Return
 `string`: Unity version. (e.g. 2021.2.7f1)
 
-#### Static Method `GetExecutePath()`
+#### Static Method `GetExecutePath(os: string, unityVersion: string): string`
 ##### Arguments
 |Name|Type|Description|
 |:--|:--|:--|
@@ -38,13 +38,13 @@ The following parameters have already been added by default when the instance is
 - `-nographics`
 - `-silent-crashes`
 
-#### Method `AddCommand()`
+#### Method `AddCommand(command: string | string[], param: string?): void`
 |Name|Type|Description|
 |:--|:--|:--|
 |command|string \| string[]|Commands to pass to the Unity command line|
 |param?|string|Parameters to be added to the command|
 
-#### Method `Build()`
+#### Method `Build(): string[]`
 
 ##### Return
 `string[]`: command array
