@@ -1,0 +1,28 @@
+{
+  "name": "unity-command",
+  "version": "0.1.1",
+  "description": "A package to control Unity from the command line.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akiojin/unity-command.git"
+  },
+  "keywords": [
+    "unity"
+  ],
+  "author": "akiojin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akiojin/unity-command/issues"
+  },
+  "homepage": "https://github.com/akiojin/unity-command#readme",
+  "dependencies": {
+    "typescript": "^4.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21"
+  }
+}
