@@ -7,5 +7,6 @@ export declare class UnityCommandBuilder {
     constructor();
     AddCommand(command: string): void;
     AddCommand(command: string, param: string): void;
+    AddCommand(commands: string[]): void;
     Build(): string[];
 }

@@ -42,13 +42,18 @@ export class UnityCommandBuilder
 
     AddCommand(command: string): void
     AddCommand(command: string, param: string): void
+    AddCommand(commands: string[]): void
 
-    AddCommand(command: string, param?: string): void
+    AddCommand(command: string | string[], param?: string): void
     {
-        this.args.push(command)
+        if (Array.isArray(command)) {
+            this.args = this.args.concat(command)
+        } else {
+            this.args.push(command)
 
-        if (param != null) {
-            this.args.push(param)
+            if (param != null) {
+                this.args.push(param)
+            }
         }
     }
 

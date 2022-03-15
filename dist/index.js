@@ -56,9 +56,14 @@ class UnityCommandBuilder {
         this.AddCommand('silent-crashes');
     }
     AddCommand(command, param) {
-        this.args.push(command);
-        if (param != null) {
-            this.args.push(param);
+        if (Array.isArray(command)) {
+            this.args = this.args.concat(command);
+        }
+        else {
+            this.args.push(command);
+            if (param != null) {
+                this.args.push(param);
+            }
         }
     }
     Build() {
