@@ -24,7 +24,7 @@ npm install unity-command
 ##### Arguments
 |Name|Type|Description|
 |:--|:--|:--|
-|os|string|Name of OS to be used|
+|os|string|Name of OS to be used.<br>See [os.platform()][1] for possible values|
 |unityVersion|string|Unity version to be used|
 
 ##### Return
@@ -32,3 +32,4 @@ npm install unity-command
 
 
 [0]: https://unity.com/
+[1]: https://nodejs.org/api/os.html#osplatform
