@@ -9,6 +9,20 @@ npm install unity-command
 ```
 
 ## Usage
+
+```sh
+const builder = new UnityCommandBuilder()
+builder.AddCommand('-buildTarget', 'iOS')
+builder.AddCommand('-noUpm')
+
+const args = [ '-executeMethod', 'MyEditorScript.PerformBuild' ]
+builder.AddCommand(args)
+...
+const exe = Unity.GetExecutePath(os.platform(), '2021.2.7f1')
+execa.execa(exe, builder.Build())
+```
+
+## Reference
 ### class `Unity`
 #### Static Method `GetVersion(projectDirectory: string): string`
 ##### Arguments
