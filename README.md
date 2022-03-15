@@ -10,8 +10,7 @@ npm install unity-command
 
 ## Usage
 ### class `Unity`
-
-#### Method `GetVersion`
+#### Static Method `GetVersion()`
 ##### Arguments
 |Name|Type|Description|
 |:--|:--|:--|
@@ -20,7 +19,7 @@ npm install unity-command
 ##### Return
 `string`: Unity version. (e.g. 2021.2.7f1)
 
-#### Method `GetExecutePath`
+#### Static Method `GetExecutePath()`
 ##### Arguments
 |Name|Type|Description|
 |:--|:--|:--|
@@ -30,6 +29,17 @@ npm install unity-command
 ##### Return
 `string`: Unity app path (e.g. /Applications/Unity/Hub/Editor/2021.2.7f1/Unity.app/Contents/MacOS/Unity)
 
+### class `UnityCommandBuilder`
+#### Method `AddCommand()`
+|Name|Type|Description|
+|:--|:--|:--|
+|command|string \| string[]|Commands to pass to the Unity command line|
+|param?|string|Parameters to be added to the command|
+
+#### Method `Build()`
+
+##### Return
+`string[]`: command array
 
 [0]: https://unity.com/
 [1]: https://nodejs.org/api/os.html#osplatform
