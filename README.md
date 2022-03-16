@@ -3,11 +3,14 @@ A package to control [Unity][0] from the command line.
 
 ## Installation
 ```sh
-npm install unity-command
+npm install @akiojin/unity-command
 ```
 
 ## Usage
-```sh
+```javascript
+import { Unity, UnityCommandBuilder } from '@akiojin/unity-command'
+```
+```javascript
 const builder = new UnityCommandBuilder()
 builder.SetBuildTarget('iOS')
 builder.SetExecuteMethod('MyEditorScript.PerformBuild')
