@@ -1,2 +1,2 @@
-@akiojin/command-builder
+@akiojin/argument-builder
 MIT

@@ -1,96 +1,72 @@
-import { CommandBuilder } from '@akiojin/command-builder'
+import { ArgumentBuilder } from '@akiojin/argument-builder'
 
-export default class UnityCommandBuilder
+export default class UnityCommandBuilder extends ArgumentBuilder
 {
-	builder: CommandBuilder = new CommandBuilder()
-
-    AddCommand(command: string): void
-    AddCommand(command: string, param: string): void
-    AddCommand(commands: string[]): void
-
-    AddCommand(command: string | string[], param?: string): void
-    {
-        if (Array.isArray(command)) {
-			this.builder.AddCommand(command)
-        } else {
-			if (param != null) {
-				this.builder.AddCommand(command, param)
-			} else {
-				this.builder.AddCommand(command)
-			}
-        }
-    }
-
     DisableGPUSkinning(): void
     {
-        this.AddCommand('-disable-gpu-skinning')
+        this.Append('-disable-gpu-skinning')
     }
 
     SetExecuteMethod(executeMethod: string): void
     {
-        this.AddCommand('-executeMethod', executeMethod)
+        this.Append('-executeMethod', executeMethod)
     }
 
     SetJobWorkerCount(count: number): void
     {
-        this.AddCommand('-job-worker-count', count.toString())
+        this.Append('-job-worker-count', count.toString())
     }
 
     SetLogFile(logFile: string): void
     {
-        this.AddCommand('-logFile', logFile)
+        this.Append('-logFile', logFile)
     }
 
     DisableUPM() : void
     {
-        this.AddCommand('-noUpm')
+        this.Append('-noUpm')
     }
 
     Activation(username: string, password: string): void
     {
-        this.AddCommand('-username', username)
-        this.AddCommand('-password', password)
+        this.Append('-username', username)
+        this.Append('-password', password)
     }
 
     SetProjectPath(projectPath: string): void
     {
-        this.AddCommand('-projectPath', projectPath)
+        this.Append('-projectPath', projectPath)
     }
 
     EnableReleaseCodeOptimization(): void
     {
-        this.AddCommand('-releaseCodeOptimization')
+        this.Append('-releaseCodeOptimization')
     }
 
     // Batch mode arguments
 
     EnableAPIUpdater(): void
     {
-        this.AddCommand('-accept-apiupdate')
+        this.Append('-accept-apiupdate')
     }
 
     // Build Arguments
 
     SetBuildTarget(target: string): void
     {
-        this.AddCommand('-buildTarget', target)
+        this.Append('-buildTarget', target)
     }
 
     // Cache server arguments
 
     EnableCacheServer(endpoint: string): void
     {
-        this.AddCommand('-EnableCacheServer')
-        this.AddCommand('-cacheServerEndpoint', endpoint)
+        this.Append('-EnableCacheServer')
+        this.Append('-cacheServerEndpoint', endpoint)
     }
 
     SetOutputPath(outputPath: string): void
     {
-        this.AddCommand('-outputPath', outputPath)
-    }
-
-    Build(): string[]
-    {
-		return this.builder.Build()
+        this.Append('-outputPath', outputPath)
     }
 }

@@ -15,7 +15,7 @@ const builder = new UnityCommandBuilder()
 builder.SetBuildTarget('iOS')
 builder.SetExecuteMethod('MyEditorScript.PerformBuild')
 const args = [ '-CustomCommand', 'Param' ]
-builder.AddCommand(args)
+builder.Append(args)
 ...
 const exe = Unity.GetExecutePath(os.platform(), '2021.2.7f1')
 execa.execa(exe, builder.Build())
@@ -30,7 +30,7 @@ Returns the Unity version set for the given project.
 ##### Arguments
 |Name|Type|Description|
 |:--|:--|:--|
-|projectDirectory|string|Unity project directory path.|
+|`projectDirectory`|`string`|Unity project directory path.|
 
 ##### Return
 |Type|Description|
@@ -45,8 +45,8 @@ Returns the Unity execution path.
 ##### Arguments
 |Name|Type|Description|
 |:--|:--|:--|
-|os|string|Name of OS to be used.<br>See [os.platform()][1] for possible values|
-|unityVersion|string|Unity version to be used|
+|`os`|`string`|Name of OS to be used.<br>See [os.platform()][1] for possible values|
+|`unityVersion`|`string`|Unity version to be used|
 
 ##### Return
 |Type|Description|
@@ -61,16 +61,6 @@ The following parameters have already been added by default when the instance is
 - `-batchmode`
 - `-nographics`
 - `-silent-crashes`
-
-#### `AddCommand(command: string | string[], param: string?): void`
-##### Description
-Add a command.
-
-##### Arguments
-|Name|Type|Description|
-|:--|:--|:--|
-|command|string \| string[]|Commands to pass to the Unity command line|
-|param?|string|Parameters to be added to the command|
 
 
 #### `DisableGPUSkinning(): void`
@@ -175,6 +165,20 @@ Specify the output directory path.
 |outputPath|string|Output path|
 
 
+#### `Append(arg: string): void`
+#### `Append(arg: string, param: string): void`
+#### `Append(args: string[]): void`
+#### `Append(arg: string | string[], param?: string): void`
+##### Description
+Add an argument.
+
+##### Arguments
+|Name|Type|Description|
+|:--|:--|:--|
+|`arg`|string \| string[]|Commands to pass to the Unity command line|
+|`param?`|string|Parameters to be added to the command|
+
+
 #### `Build(): string[]`
 ##### Description
 Returns an array of arguments to be passed to the command line.
@@ -182,7 +186,7 @@ Returns an array of arguments to be passed to the command line.
 ##### Return
 |Type|Description|
 |:--|:--|
-|`string[]`|command array|
+|`string[]`|Argument array|
 
 [0]: https://unity.com/
 [1]: https://nodejs.org/api/os.html#osplatform

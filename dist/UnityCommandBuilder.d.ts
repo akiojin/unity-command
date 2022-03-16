@@ -1,9 +1,5 @@
-import { CommandBuilder } from '@akiojin/command-builder';
-export default class UnityCommandBuilder {
-    builder: CommandBuilder;
-    AddCommand(command: string): void;
-    AddCommand(command: string, param: string): void;
-    AddCommand(commands: string[]): void;
+import { ArgumentBuilder } from '@akiojin/argument-builder';
+export default class UnityCommandBuilder extends ArgumentBuilder {
     DisableGPUSkinning(): void;
     SetExecuteMethod(executeMethod: string): void;
     SetJobWorkerCount(count: number): void;
@@ -16,5 +12,4 @@ export default class UnityCommandBuilder {
     SetBuildTarget(target: string): void;
     EnableCacheServer(endpoint: string): void;
     SetOutputPath(outputPath: string): void;
-    Build(): string[];
 }
