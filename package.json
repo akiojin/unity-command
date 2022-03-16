@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/akiojin/unity-command#readme",
   "dependencies": {
+    "@akiojin/command-builder": "^0.1.0",
     "typescript": "^4.6.2"
   },
   "devDependencies": {

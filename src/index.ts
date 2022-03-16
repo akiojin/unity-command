@@ -1,2 +1,2 @@
 export { default as Unity } from './unity';
-export { UnityCommandBuilder } from './unity'
+export { default as UnityCommandBuilder } from './UnityCommandBuilder'
