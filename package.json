@@ -1,6 +1,6 @@
 {
   "name": "@akiojin/unity-command",
-  "version": "0.1.11",
+  "version": "0.2.0",
   "description": "A package to control Unity from the command line.",
   "main": "dist/index.js",
   "private": false,
