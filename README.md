@@ -7,10 +7,10 @@ npm install @akiojin/unity-command
 ```
 
 ## Usage
-```javascript
+```js
 import { Unity, UnityCommandBuilder } from '@akiojin/unity-command'
 ```
-```javascript
+```js
 const builder = new UnityCommandBuilder()
 builder.SetBuildTarget('iOS')
 builder.SetExecuteMethod('MyEditorScript.PerformBuild')
