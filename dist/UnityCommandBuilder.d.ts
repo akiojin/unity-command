@@ -1,5 +1,6 @@
 import { ArgumentBuilder } from '@akiojin/argument-builder';
 export default class UnityCommandBuilder extends ArgumentBuilder {
+    constructor();
     DisableGPUSkinning(): void;
     SetExecuteMethod(executeMethod: string): void;
     SetJobWorkerCount(count: number): void;

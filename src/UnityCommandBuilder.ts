@@ -2,6 +2,16 @@ import { ArgumentBuilder } from '@akiojin/argument-builder'
 
 export default class UnityCommandBuilder extends ArgumentBuilder
 {
+    constructor()
+    {
+        super()
+
+        this.Append('-quit')
+        this.Append('-batchmode')
+        this.Append('-nographics')
+        this.Append('-silent-crashes')
+    }
+
     DisableGPUSkinning(): void
     {
         this.Append('-disable-gpu-skinning')
