@@ -12,5 +12,7 @@ export default class UnityCommandBuilder extends ArgumentBuilder {
     EnableAPIUpdater(): void;
     SetBuildTarget(target: string): void;
     EnableCacheServer(endpoint: string): void;
-    SetOutputPath(outputPath: string): void;
+    DisableManagedDebugger(): void;
+    EnableDebugCodeOptimization(): void;
+    SetStackTraceLogType(type: string): void;
 }

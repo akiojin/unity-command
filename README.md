@@ -155,14 +155,24 @@ This overrides any configuration stored in the Editor Preferences. Use this to c
 |endpoint|string|Specifies the endpoint address if you are using the newer Accelerator Cache Server.<br>Example: 127.0.0.1:10080.|
 
 
-#### `SetOutputPath(outputPath: string): void`
+#### `DisableManagedDebugger(): void`
 ##### Description
-Specify the output directory path.
+Disables the debugger listen socket.
+
+
+#### `EnableDebugCodeOptimization(): void`
+##### Description
+Enables debug code optimization mode, overriding the current default code optimization mode for the session.
+
+
+#### `SetStackTraceLogType(type: string): void`
+##### Description
+Allow detailed debugging. All settings allow None, Script Only and Full to be selected.
 
 ##### Arguments
 |Name|Type|Description|
 |:--|:--|:--|
-|outputPath|string|Output path|
+|type|string|"None" or "Script Only" or "Full"|
 
 
 #### `Append(arg: string): void`

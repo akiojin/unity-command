@@ -161,8 +161,15 @@ class UnityCommandBuilder extends argument_builder_1.ArgumentBuilder {
         this.Append('-EnableCacheServer');
         this.Append('-cacheServerEndpoint', endpoint);
     }
-    SetOutputPath(outputPath) {
-        this.Append('-outputPath', outputPath);
+    // Debugging arguments
+    DisableManagedDebugger() {
+        this.Append('-disableManagedDebugger');
+    }
+    EnableDebugCodeOptimization() {
+        this.Append('-debugCodeOptimization');
+    }
+    SetStackTraceLogType(type) {
+        this.Append('-stackTraceLogType', `"${type}"`);
     }
 }
 exports["default"] = UnityCommandBuilder;
