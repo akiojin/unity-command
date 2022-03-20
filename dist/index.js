@@ -9,36 +9,50 @@
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 356:
-/***/ ((__unused_webpack_module, exports) => {
+/***/ (function(__unused_webpack_module, exports) {
 
 
+var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
+var _ArgumentBuilder_args;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 class ArgumentBuilder {
     constructor() {
-        this.args = [];
+        _ArgumentBuilder_args.set(this, []);
     }
     Append(arg, param) {
         if (Array.isArray(arg)) {
-            this.args = this.args.concat(arg);
+            __classPrivateFieldSet(this, _ArgumentBuilder_args, __classPrivateFieldGet(this, _ArgumentBuilder_args, "f").concat(arg), "f");
         }
         else {
-            this.args.push(arg);
+            __classPrivateFieldGet(this, _ArgumentBuilder_args, "f").push(arg);
             if (param != null) {
-                this.args.push(param);
+                __classPrivateFieldGet(this, _ArgumentBuilder_args, "f").push(param);
             }
         }
+        return this;
     }
     Count() {
-        return this.args.length;
+        return __classPrivateFieldGet(this, _ArgumentBuilder_args, "f").length;
     }
     Build() {
-        return this.args;
+        return __classPrivateFieldGet(this, _ArgumentBuilder_args, "f");
     }
     ToString() {
-        return this.args.join(' ');
+        return __classPrivateFieldGet(this, _ArgumentBuilder_args, "f").join(' ');
     }
 }
 exports["default"] = ArgumentBuilder;
+_ArgumentBuilder_args = new WeakMap();
 
 
 /***/ }),
@@ -118,58 +132,72 @@ const argument_builder_1 = __nccwpck_require__(582);
 class UnityCommandBuilder extends argument_builder_1.ArgumentBuilder {
     constructor() {
         super();
-        this.Append('-quit');
-        this.Append('-batchmode');
-        this.Append('-nographics');
-        this.Append('-silent-crashes');
+        this.Append('-quit')
+            .Append('-batchmode')
+            .Append('-nographics')
+            .Append('-silent-crashes');
     }
     DisableGPUSkinning() {
         this.Append('-disable-gpu-skinning');
+        return this;
     }
     SetExecuteMethod(executeMethod) {
         this.Append('-executeMethod', executeMethod);
+        return this;
     }
     SetJobWorkerCount(count) {
         this.Append('-job-worker-count', count.toString());
+        return this;
     }
     SetLogFile(logFile) {
         this.Append('-logFile', logFile);
+        return this;
     }
     DisableUPM() {
         this.Append('-noUpm');
+        return this;
     }
     Activation(username, password) {
-        this.Append('-username', username);
-        this.Append('-password', password);
+        this.Append('-username', username)
+            .Append('-password', password);
+        return this;
     }
     SetProjectPath(projectPath) {
         this.Append('-projectPath', projectPath);
+        return this;
     }
     EnableReleaseCodeOptimization() {
         this.Append('-releaseCodeOptimization');
+        return this;
     }
     // Batch mode arguments
     EnableAPIUpdater() {
         this.Append('-accept-apiupdate');
+        return this;
     }
     // Build Arguments
     SetBuildTarget(target) {
         this.Append('-buildTarget', target);
+        return this;
     }
     // Cache server arguments
     EnableCacheServer(endpoint) {
-        this.Append('-EnableCacheServer');
-        this.Append('-cacheServerEndpoint', endpoint);
+        this.Append('-EnableCacheServer')
+            .Append('-cacheServerEndpoint', endpoint);
+        return this;
     }
     // Debugging arguments
     DisableManagedDebugger() {
         this.Append('-disableManagedDebugger');
+        return this;
     }
     EnableDebugCodeOptimization() {
         this.Append('-debugCodeOptimization');
+        return this;
     }
     SetStackTraceLogType(type) {
         this.Append('-stackTraceLogType', `"${type}"`);
+        return this;
     }
 }
 exports["default"] = UnityCommandBuilder;

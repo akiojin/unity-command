@@ -12,10 +12,10 @@ import { Unity, UnityCommandBuilder } from '@akiojin/unity-command'
 ```
 ```js
 const builder = new UnityCommandBuilder()
-builder.SetBuildTarget('iOS')
-builder.SetExecuteMethod('MyEditorScript.PerformBuild')
-const args = [ '-CustomCommand', 'Param' ]
-builder.Append(args)
+builder
+    .SetBuildTarget('iOS')
+    .SetExecuteMethod('MyEditorScript.PerformBuild')
+    .Append([ '-CustomCommand', 'Param' ])
 ...
 const exe = Unity.GetExecutePath(os.platform(), '2021.2.7f1')
 execa.execa(exe, builder.Build())

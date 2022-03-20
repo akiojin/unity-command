@@ -5,90 +5,103 @@ export default class UnityCommandBuilder extends ArgumentBuilder
 	constructor()
 	{
 		super()
-
 		this.Append('-quit')
-		this.Append('-batchmode')
-		this.Append('-nographics')
-		this.Append('-silent-crashes')
+			.Append('-batchmode')
+			.Append('-nographics')
+			.Append('-silent-crashes')
 	}
 
-	DisableGPUSkinning(): void
+	DisableGPUSkinning(): UnityCommandBuilder
 	{
 		this.Append('-disable-gpu-skinning')
+		return this
 	}
 
-	SetExecuteMethod(executeMethod: string): void
+	SetExecuteMethod(executeMethod: string): UnityCommandBuilder
 	{
 		this.Append('-executeMethod', executeMethod)
+		return this
 	}
 
-	SetJobWorkerCount(count: number): void
+	SetJobWorkerCount(count: number): UnityCommandBuilder
 	{
 		this.Append('-job-worker-count', count.toString())
+		return this
 	}
 
-	SetLogFile(logFile: string): void
+	SetLogFile(logFile: string): UnityCommandBuilder
 	{
 		this.Append('-logFile', logFile)
+		return this
 	}
 
-	DisableUPM() : void
+	DisableUPM() : UnityCommandBuilder
 	{
 		this.Append('-noUpm')
+		return this
 	}
 
-	Activation(username: string, password: string): void
+	Activation(username: string, password: string): UnityCommandBuilder
 	{
 		this.Append('-username', username)
-		this.Append('-password', password)
+			.Append('-password', password)
+		return this
 	}
 
-	SetProjectPath(projectPath: string): void
+	SetProjectPath(projectPath: string): UnityCommandBuilder
 	{
 		this.Append('-projectPath', projectPath)
+		return this
 	}
 
-	EnableReleaseCodeOptimization(): void
+	EnableReleaseCodeOptimization(): UnityCommandBuilder
 	{
 		this.Append('-releaseCodeOptimization')
+		return this
 	}
 
 	// Batch mode arguments
 
-	EnableAPIUpdater(): void
+	EnableAPIUpdater(): UnityCommandBuilder
 	{
 		this.Append('-accept-apiupdate')
+		return this
 	}
 
 	// Build Arguments
 
-	SetBuildTarget(target: string): void
+	SetBuildTarget(target: string): UnityCommandBuilder
 	{
 		this.Append('-buildTarget', target)
+		return this
 	}
 
 	// Cache server arguments
 
-	EnableCacheServer(endpoint: string): void
+	EnableCacheServer(endpoint: string): UnityCommandBuilder
 	{
 		this.Append('-EnableCacheServer')
-		this.Append('-cacheServerEndpoint', endpoint)
+			.Append('-cacheServerEndpoint', endpoint)
+		return this
 	}
 
     // Debugging arguments
 
-	DisableManagedDebugger(): void
+	DisableManagedDebugger(): UnityCommandBuilder
 	{
 		this.Append('-disableManagedDebugger')
+		return this
 	}
 
-    EnableDebugCodeOptimization(): void
+    EnableDebugCodeOptimization(): UnityCommandBuilder
     {
         this.Append('-debugCodeOptimization')
+		return this
     }
 
-    SetStackTraceLogType(type: string): void
+    SetStackTraceLogType(type: string): UnityCommandBuilder
     {
         this.Append('-stackTraceLogType', `"${type}"`)
+		return this
     }
 }
