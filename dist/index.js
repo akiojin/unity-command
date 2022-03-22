@@ -224,12 +224,16 @@ Object.defineProperty(exports, "UnityCommandBuilder", ({ enumerable: true, get: 
 /***/ }),
 
 /***/ 327:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
 
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const fs_1 = __nccwpck_require__(147);
+const path_1 = __importDefault(__nccwpck_require__(17));
 class Unity {
     static GetExecutePath(os, unityVersion) {
         switch (os) {
@@ -241,7 +245,7 @@ class Unity {
         }
     }
     static async GetVersion(projectDirectory) {
-        const data = await fs_1.promises.readFile(`${projectDirectory}/ProjectSettings/ProjectVersion.txt`);
+        const data = await fs_1.promises.readFile(path_1.default.join(projectDirectory, 'ProjectSettings', 'ProjectVersion.txt'));
         const text = data.toString();
         const result = text.match(/m_EditorVersion: (?<version>[0-9a-zA-Z.]*)/i);
         if (result === null || result.groups == null) {
@@ -260,6 +264,14 @@ exports["default"] = Unity;
 
 "use strict";
 module.exports = require("fs");
+
+/***/ }),
+
+/***/ 17:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("path");
 
 /***/ })
 

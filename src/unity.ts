@@ -1,4 +1,5 @@
 import { promises as fs } from 'fs'
+import path from 'path'
 
 export default class Unity
 {
@@ -15,7 +16,7 @@ export default class Unity
 
     static async GetVersion(projectDirectory: string): Promise<string>
     {
-        const data = await fs.readFile(`${projectDirectory}/ProjectSettings/ProjectVersion.txt`)
+        const data = await fs.readFile(path.join(projectDirectory, 'ProjectSettings', 'ProjectVersion.txt'))
         const text = data.toString()
     
         const result = text.match(/m_EditorVersion: (?<version>[0-9a-zA-Z.]*)/i)
