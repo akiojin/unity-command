@@ -31,9 +31,9 @@ export default class Unity
      */
     static async GetVersion(projectDirectory: string): Promise<string>
     {
-        const data = await fs.readFile(path.join(projectDirectory, 'ProjectSettings', 'ProjectVersion.txt'))
-        const text = data.toString()
-    
+        const filePath = path.join(projectDirectory, 'ProjectSettings', 'ProjectVersion.txt')
+        const text = await fs.readFile(filePath, 'utf-8')
+
         const result = text.match(/m_EditorVersion: (?<version>[0-9a-zA-Z.]*)/i)
     
         if (result === null || result.groups == null) {
