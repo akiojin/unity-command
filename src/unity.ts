@@ -14,6 +14,7 @@ export default class Unity
     {
         switch (os) {
         default:
+            throw new Error('Unsupported platform.')
         case 'darwin':
             return `/Applications/Unity/Hub/Editor/${unityVersion}/Unity.app/Contents/MacOS/Unity`
         case 'win32':
