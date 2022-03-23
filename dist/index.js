@@ -130,6 +130,9 @@ Object.defineProperty(exports, "ArgumentBuilder", ({ enumerable: true, get: func
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const argument_builder_1 = __nccwpck_require__(582);
 class UnityCommandBuilder extends argument_builder_1.ArgumentBuilder {
+    /**
+     * Sets the default argument.
+     */
     constructor() {
         super();
         this.Append('-quit')
@@ -137,64 +140,153 @@ class UnityCommandBuilder extends argument_builder_1.ArgumentBuilder {
             .Append('-nographics')
             .Append('-silent-crashes');
     }
+    /**
+     * Disable Graphics Processing Unit (GPU) skinning at startup.
+     *
+     * @returns this
+     */
     DisableGPUSkinning() {
         this.Append('-disable-gpu-skinning');
         return this;
     }
+    /**
+     * Execute the static method as soon as Unity opens the project,
+     * and after the optional Asset server update is complete.
+     *
+     * @param executeMethod Method name
+     * @returns this
+     */
     SetExecuteMethod(executeMethod) {
         this.Append('-executeMethod', executeMethod);
         return this;
     }
+    /**
+     * Specify the maximum thread count for the Unity JobQueue Job Worker Count.
+     *
+     * @param count Job Worker Count
+     * @returns this
+     */
     SetJobWorkerCount(count) {
         this.Append('-job-worker-count', count.toString());
         return this;
     }
+    /**
+     * Specify where Unity writes the Editor or Windows/Linux/OSX standalone log file.
+     *
+     * @param logFile pathname
+     * @returns this
+     */
     SetLogFile(logFile) {
         this.Append('-logFile', logFile);
         return this;
     }
+    /**
+     * Disables the Unity Package Manager.
+     *
+     * @returns this
+     */
     DisableUPM() {
         this.Append('-noUpm');
         return this;
     }
+    /**
+     * Activate Unity Editor.
+     *
+     * @param username username
+     * @param password password
+     * @returns this
+     */
     Activation(username, password) {
         this.Append('-username', username)
             .Append('-password', password);
         return this;
     }
+    /**
+     * Open the project at the given path.
+     *
+     * @param projectPath pathname
+     * @returns this
+     */
     SetProjectPath(projectPath) {
         this.Append('-projectPath', projectPath);
         return this;
     }
+    /**
+     * Enables release code optimization mode,
+     * overriding the current default code optimization mode for the session.
+     *
+     * @returns this
+     */
     EnableReleaseCodeOptimization() {
         this.Append('-releaseCodeOptimization');
         return this;
     }
     // Batch mode arguments
+    /**
+     * Use this command line option to specify that APIUpdater should run when Unity is launched in batch mode.
+     *
+     * @returns this
+     */
     EnableAPIUpdater() {
         this.Append('-accept-apiupdate');
         return this;
     }
     // Build Arguments
+    /**
+     * Select an active build target before loading a project.
+     *
+     * Possible options are:
+     * Standalone, Win, Win64, OSXUniversal, Linux64, iOS, Android, WebGL, WindowsStoreApps, tvOS
+     *
+     * @param target Target name
+     * @returns this
+     */
     SetBuildTarget(target) {
         this.Append('-buildTarget', target);
         return this;
     }
     // Cache server arguments
+    /**
+     * Tells Unity to use the newer Accelerator Cache Server.
+     * Specifies the endpoint address if you are using the newer Accelerator Cache Server.
+     *
+     * @param endpoint Example: -cacheServerEndpoint 127.0.0.1:10080
+     * @returns this
+     */
     EnableCacheServer(endpoint) {
         this.Append('-EnableCacheServer')
             .Append('-cacheServerEndpoint', endpoint);
         return this;
     }
     // Debugging arguments
+    /**
+     * Disables the debugger listen socket.
+     *
+     * @returns this
+     */
     DisableManagedDebugger() {
         this.Append('-disableManagedDebugger');
         return this;
     }
+    /**
+     * Enables debug code optimization mode,
+     * overriding the current default code optimization mode for the session.
+     *
+     * @returns this
+     */
     EnableDebugCodeOptimization() {
         this.Append('-debugCodeOptimization');
         return this;
     }
+    /**
+     * Allow detailed debugging.
+     *
+     * Possible options are:
+     * None, Script Only, Full
+     *
+     * @param type option
+     * @returns
+     */
     SetStackTraceLogType(type) {
         this.Append('-stackTraceLogType', `"${type}"`);
         return this;
@@ -235,18 +327,33 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const fs_1 = __nccwpck_require__(147);
 const path_1 = __importDefault(__nccwpck_require__(17));
 class Unity {
+    /**
+     * Returns the path to the Unity executable.
+     *
+     * @param os platform name (e.g. os.platform())
+     * @param unityVersion Unity version
+     * @returns Execute path
+     */
     static GetExecutePath(os, unityVersion) {
         switch (os) {
             default:
+                throw new Error('Unsupported platform.');
             case 'darwin':
                 return `/Applications/Unity/Hub/Editor/${unityVersion}/Unity.app/Contents/MacOS/Unity`;
             case 'win32':
                 return `C:\\Program Files\\Unity\\Hub\\Editor\\${unityVersion}\\Editor\\Unity.exe`;
         }
     }
+    /**
+     * Returns the version of Unity used in a given project.
+     * The Unity version is obtained from ProjectSettings/ProjectVersion.txt.
+     *
+     * @param projectDirectory Unity project path
+     * @returns Unity version (e.g. 2021.2.16f1)
+     */
     static async GetVersion(projectDirectory) {
-        const data = await fs_1.promises.readFile(path_1.default.join(projectDirectory, 'ProjectSettings', 'ProjectVersion.txt'));
-        const text = data.toString();
+        const filePath = path_1.default.join(projectDirectory, 'ProjectSettings', 'ProjectVersion.txt');
+        const text = await fs_1.promises.readFile(filePath, 'utf-8');
         const result = text.match(/m_EditorVersion: (?<version>[0-9a-zA-Z.]*)/i);
         if (result === null || result.groups == null) {
             throw new Error('Invalid ProjectVersion.txt');
