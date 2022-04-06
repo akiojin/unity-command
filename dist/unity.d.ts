@@ -6,7 +6,7 @@ export default class Unity {
      * @param unityVersion Unity version
      * @returns Execute path
      */
-    static GetExecutePath(os: string, unityVersion: string): string;
+    static GetExecutePath(os: string, unityVersion?: string): string;
     /**
      * Returns the version of Unity used in a given project.
      * The Unity version is obtained from ProjectSettings/ProjectVersion.txt.

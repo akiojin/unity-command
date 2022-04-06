@@ -339,7 +339,12 @@ class Unity {
             default:
                 throw new Error('Unsupported platform.');
             case 'darwin':
-                return `/Applications/Unity/Hub/Editor/${unityVersion}/Unity.app/Contents/MacOS/Unity`;
+                if (!unityVersion) {
+                    return `/Applications/Unity/Hub/Editor/${unityVersion}/Unity.app/Contents/MacOS/Unity`;
+                }
+                else {
+                    return `/Applications/Unity/Unity.app/Contents/MacOS/Unity`;
+                }
             case 'win32':
                 return `C:\\Program Files\\Unity\\Hub\\Editor\\${unityVersion}\\Editor\\Unity.exe`;
         }
