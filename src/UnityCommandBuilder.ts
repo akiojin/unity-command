@@ -89,7 +89,13 @@ export default class UnityCommandBuilder extends ArgumentBuilder
 		return this
 	}
 
-	ActivationForFile(username: string, password: string, ulfFilePath: string): UnityCommandBuilder
+	RequestActivaion(): UnityCommandBuilder
+	{
+		this.Append('-createManualActivationFile')
+		return this;
+	}
+
+	ActivationForFile(ulfFilePath: string): UnityCommandBuilder
 	{
 		this.Append('-manualLicenseFile', ulfFilePath)
 		return this;

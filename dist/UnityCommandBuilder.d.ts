@@ -47,7 +47,8 @@ export default class UnityCommandBuilder extends ArgumentBuilder {
      * @returns this
      */
     Activation(username: string, password: string, serial: string): UnityCommandBuilder;
-    ActivationForFile(username: string, password: string, ulfFilePath: string): UnityCommandBuilder;
+    RequestActivaion(): UnityCommandBuilder;
+    ActivationForFile(ulfFilePath: string): UnityCommandBuilder;
     Deactivation(username: string, password: string): UnityCommandBuilder;
     /**
      * Open the project at the given path.

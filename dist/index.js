@@ -203,7 +203,11 @@ class UnityCommandBuilder extends argument_builder_1.ArgumentBuilder {
             .Append('-serial', serial);
         return this;
     }
-    ActivationForFile(username, password, ulfFilePath) {
+    RequestActivaion() {
+        this.Append('-createManualActivationFile');
+        return this;
+    }
+    ActivationForFile(ulfFilePath) {
         this.Append('-manualLicenseFile', ulfFilePath);
         return this;
     }
