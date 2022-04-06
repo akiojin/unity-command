@@ -39,13 +39,16 @@ export default class UnityCommandBuilder extends ArgumentBuilder {
      */
     DisableUPM(): UnityCommandBuilder;
     /**
-     * Activate Unity Editor.
+     * Activate Unity Editor. (Plus and Pro only)
      *
      * @param username username
      * @param password password
+     * @param serial Unity Serial No.
      * @returns this
      */
-    Activation(username: string, password: string): UnityCommandBuilder;
+    Activation(username: string, password: string, serial: string): UnityCommandBuilder;
+    ActivationForFile(username: string, password: string, ulfFilePath: string): UnityCommandBuilder;
+    Deactivation(username: string, password: string): UnityCommandBuilder;
     /**
      * Open the project at the given path.
      *

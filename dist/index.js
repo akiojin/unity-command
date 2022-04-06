@@ -190,14 +190,26 @@ class UnityCommandBuilder extends argument_builder_1.ArgumentBuilder {
         return this;
     }
     /**
-     * Activate Unity Editor.
+     * Activate Unity Editor. (Plus and Pro only)
      *
      * @param username username
      * @param password password
+     * @param serial Unity Serial No.
      * @returns this
      */
-    Activation(username, password) {
+    Activation(username, password, serial) {
         this.Append('-username', username)
+            .Append('-password', password)
+            .Append('-serial', serial);
+        return this;
+    }
+    ActivationForFile(username, password, ulfFilePath) {
+        this.Append('-manualLicenseFile', ulfFilePath);
+        return this;
+    }
+    Deactivation(username, password) {
+        this.Append('-returnlicense')
+            .Append('-username', username)
             .Append('-password', password);
         return this;
     }
