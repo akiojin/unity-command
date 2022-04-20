@@ -67,9 +67,15 @@ export default class UnityCommandBuilder extends ArgumentBuilder
 	 * 
 	 * @returns this
 	 */
-	DisableUPM() : UnityCommandBuilder
+	DisableUPM(): UnityCommandBuilder
 	{
 		this.Append('-noUpm')
+		return this
+	}
+
+	EnablePackageManagerTraces(): UnityCommandBuilder
+	{
+		this.Append('-enablePackageManagerTraces')
 		return this
 	}
 

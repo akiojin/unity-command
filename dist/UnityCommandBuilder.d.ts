@@ -38,6 +38,7 @@ export default class UnityCommandBuilder extends ArgumentBuilder {
      * @returns this
      */
     DisableUPM(): UnityCommandBuilder;
+    EnablePackageManagerTraces(): UnityCommandBuilder;
     /**
      * Activate Unity Editor. (Plus and Pro only)
      *

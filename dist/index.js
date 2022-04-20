@@ -189,6 +189,10 @@ class UnityCommandBuilder extends argument_builder_1.ArgumentBuilder {
         this.Append('-noUpm');
         return this;
     }
+    EnablePackageManagerTraces() {
+        this.Append('-enablePackageManagerTraces');
+        return this;
+    }
     /**
      * Activate Unity Editor. (Plus and Pro only)
      *
