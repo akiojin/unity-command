@@ -38,6 +38,11 @@ export default class UnityCommandBuilder extends ArgumentBuilder {
      * @returns this
      */
     DisableUPM(): UnityCommandBuilder;
+    /**
+     * Enable log output from the Unity Package Manager.
+     *
+     * @returns this
+     */
     EnablePackageManagerTraces(): UnityCommandBuilder;
     /**
      * Activate Unity Editor. (Plus and Pro only)
@@ -48,8 +53,26 @@ export default class UnityCommandBuilder extends ArgumentBuilder {
      * @returns this
      */
     Activation(username: string, password: string, serial: string): UnityCommandBuilder;
+    /**
+     * Generate a license request file.
+     *
+     * @returns this
+     */
     RequestActivaion(): UnityCommandBuilder;
+    /**
+     * License authentication by ulf file.
+     *
+     * @param ulfFilePath ulf file path.
+     * @returns this
+     */
     ActivationForFile(ulfFilePath: string): UnityCommandBuilder;
+    /**
+     * Return the license.
+     *
+     * @param username User name.
+     * @param password Password
+     * @returns this
+     */
     Deactivation(username: string, password: string): UnityCommandBuilder;
     /**
      * Open the project at the given path.

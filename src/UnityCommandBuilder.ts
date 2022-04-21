@@ -73,6 +73,11 @@ export default class UnityCommandBuilder extends ArgumentBuilder
 		return this
 	}
 
+	/**
+	 * Enable log output from the Unity Package Manager.
+	 * 
+	 * @returns this
+	 */
 	EnablePackageManagerTraces(): UnityCommandBuilder
 	{
 		this.Append('-enablePackageManagerTraces')
@@ -95,18 +100,36 @@ export default class UnityCommandBuilder extends ArgumentBuilder
 		return this
 	}
 
+	/**
+	 * Generate a license request file.
+	 * 
+	 * @returns this
+	 */
 	RequestActivaion(): UnityCommandBuilder
 	{
 		this.Append('-createManualActivationFile')
 		return this;
 	}
 
+	/**
+	 * License authentication by ulf file.
+	 * 
+	 * @param ulfFilePath ulf file path.
+	 * @returns this
+	 */
 	ActivationForFile(ulfFilePath: string): UnityCommandBuilder
 	{
 		this.Append('-manualLicenseFile', ulfFilePath)
 		return this;
 	}
 
+	/**
+	 * Return the license.
+	 * 
+	 * @param username User name.
+	 * @param password Password
+	 * @returns this
+	 */
 	Deactivation(username: string, password: string): UnityCommandBuilder
 	{
 		this.Append('-returnlicense')

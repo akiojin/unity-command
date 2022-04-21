@@ -189,6 +189,11 @@ class UnityCommandBuilder extends argument_builder_1.ArgumentBuilder {
         this.Append('-noUpm');
         return this;
     }
+    /**
+     * Enable log output from the Unity Package Manager.
+     *
+     * @returns this
+     */
     EnablePackageManagerTraces() {
         this.Append('-enablePackageManagerTraces');
         return this;
@@ -207,14 +212,32 @@ class UnityCommandBuilder extends argument_builder_1.ArgumentBuilder {
             .Append('-serial', serial);
         return this;
     }
+    /**
+     * Generate a license request file.
+     *
+     * @returns this
+     */
     RequestActivaion() {
         this.Append('-createManualActivationFile');
         return this;
     }
+    /**
+     * License authentication by ulf file.
+     *
+     * @param ulfFilePath ulf file path.
+     * @returns this
+     */
     ActivationForFile(ulfFilePath) {
         this.Append('-manualLicenseFile', ulfFilePath);
         return this;
     }
+    /**
+     * Return the license.
+     *
+     * @param username User name.
+     * @param password Password
+     * @returns this
+     */
     Deactivation(username, password) {
         this.Append('-returnlicense')
             .Append('-username', username)
