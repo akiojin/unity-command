@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 582:
+/***/ 531:
 /***/ ((module) => {
 
 /******/ (() => { // webpackBootstrap
@@ -122,13 +122,13 @@ Object.defineProperty(exports, "ArgumentBuilder", ({ enumerable: true, get: func
 
 /***/ }),
 
-/***/ 156:
+/***/ 434:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const argument_builder_1 = __nccwpck_require__(582);
+const argument_builder_1 = __nccwpck_require__(531);
 class UnityCommandBuilder extends argument_builder_1.ArgumentBuilder {
     /**
      * Sets the default argument.
@@ -340,7 +340,7 @@ exports["default"] = UnityCommandBuilder;
 
 /***/ }),
 
-/***/ 925:
+/***/ 342:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -350,15 +350,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UnityCommandBuilder = exports.Unity = void 0;
-var unity_1 = __nccwpck_require__(327);
+var unity_1 = __nccwpck_require__(887);
 Object.defineProperty(exports, "Unity", ({ enumerable: true, get: function () { return __importDefault(unity_1).default; } }));
-var UnityCommandBuilder_1 = __nccwpck_require__(156);
+var UnityCommandBuilder_1 = __nccwpck_require__(434);
 Object.defineProperty(exports, "UnityCommandBuilder", ({ enumerable: true, get: function () { return __importDefault(UnityCommandBuilder_1).default; } }));
 
 
 /***/ }),
 
-/***/ 327:
+/***/ 887:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -389,7 +389,7 @@ class Unity {
                     return `/Applications/Unity/Hub/Editor/${unityVersion}/Unity.app/Contents/MacOS/Unity`;
                 }
             case 'win32':
-                return `C:\\Program Files\\Unity\\Hub\\Editor\\${unityVersion}\\Editor\\Unity.exe`;
+                return `"C:\\Program Files\\Unity\\Hub\\Editor\\${unityVersion}\\Editor\\Unity.exe"`;
         }
     }
     /**
@@ -472,7 +472,7 @@ module.exports = require("path");
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(925);
+/******/ 	var __webpack_exports__ = __nccwpck_require__(342);
 /******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()
