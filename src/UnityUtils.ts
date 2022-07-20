@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs'
 import path from 'path'
 
-export default class Unity
+export default class UnityUtils
 {
     /**
      * Returns the path to the Unity executable.

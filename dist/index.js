@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 531:
+/***/ 175:
 /***/ ((module) => {
 
 /******/ (() => { // webpackBootstrap
@@ -122,13 +122,13 @@ Object.defineProperty(exports, "ArgumentBuilder", ({ enumerable: true, get: func
 
 /***/ }),
 
-/***/ 434:
+/***/ 245:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const argument_builder_1 = __nccwpck_require__(531);
+const argument_builder_1 = __nccwpck_require__(175);
 class UnityCommandBuilder extends argument_builder_1.ArgumentBuilder {
     /**
      * Sets the default argument.
@@ -340,25 +340,7 @@ exports["default"] = UnityCommandBuilder;
 
 /***/ }),
 
-/***/ 342:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.UnityCommandBuilder = exports.Unity = void 0;
-var unity_1 = __nccwpck_require__(887);
-Object.defineProperty(exports, "Unity", ({ enumerable: true, get: function () { return __importDefault(unity_1).default; } }));
-var UnityCommandBuilder_1 = __nccwpck_require__(434);
-Object.defineProperty(exports, "UnityCommandBuilder", ({ enumerable: true, get: function () { return __importDefault(UnityCommandBuilder_1).default; } }));
-
-
-/***/ }),
-
-/***/ 887:
+/***/ 322:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -369,7 +351,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const fs_1 = __nccwpck_require__(147);
 const path_1 = __importDefault(__nccwpck_require__(17));
-class Unity {
+class UnityUtils {
     /**
      * Returns the path to the Unity executable.
      *
@@ -409,7 +391,25 @@ class Unity {
         return result.groups.version;
     }
 }
-exports["default"] = Unity;
+exports["default"] = UnityUtils;
+
+
+/***/ }),
+
+/***/ 177:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.UnityCommandBuilder = exports.UnityUtils = void 0;
+var UnityUtils_1 = __nccwpck_require__(322);
+Object.defineProperty(exports, "UnityUtils", ({ enumerable: true, get: function () { return __importDefault(UnityUtils_1).default; } }));
+var UnityCommandBuilder_1 = __nccwpck_require__(245);
+Object.defineProperty(exports, "UnityCommandBuilder", ({ enumerable: true, get: function () { return __importDefault(UnityCommandBuilder_1).default; } }));
 
 
 /***/ }),
@@ -472,7 +472,7 @@ module.exports = require("path");
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(342);
+/******/ 	var __webpack_exports__ = __nccwpck_require__(177);
 /******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()
