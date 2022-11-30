@@ -4,18 +4,15 @@
   "description": "A package to control Unity from the command line.",
   "main": "dist/index.js",
   "private": false,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akiojin/unity-command.git"
+    "url": "https://github.com/akiojin/unity-command.git"
   },
   "keywords": [
     "unity",
     "unity3d"
   ],
-  "author": "akiojin",
+  "author": "Akio Jinsenji <akio-jinsenji@cloud-creative-studios.com> (https://github.com/akiojin)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/akiojin/unity-command/issues"
