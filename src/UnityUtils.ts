@@ -8,9 +8,10 @@ export default class UnityUtils
      * 
      * @param os platform name (e.g. os.platform())
      * @param unityVersion Unity version
+     * @param installDirectory Unity Hub install directory
      * @returns Execute path
      */
-    static GetExecutePath(os: string, unityVersion?: string): string
+    static GetExecutePath(os: string, unityVersion?: string, installDirectory?: string): string
     {
         switch (os) {
         default:
@@ -22,7 +23,11 @@ export default class UnityUtils
                 return `/Applications/Unity/Hub/Editor/${unityVersion}/Unity.app/Contents/MacOS/Unity`
             }
         case 'win32':
-            return `"C:\\Program Files\\Unity\\Hub\\Editor\\${unityVersion}\\Editor\\Unity.exe"`
+            if (!installDirectory) {
+                return `"C:\\Program Files\\Unity\\Hub\\Editor\\${unityVersion}\\Editor\\Unity.exe"`
+            } else {
+                return `"${installDirectory}\\${unityVersion}\\Editor\\Unity.exe"`
+            }
         }
     }
 
