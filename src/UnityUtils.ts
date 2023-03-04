@@ -3,6 +3,12 @@ import * as os from 'os'
 
 export default class UnityUtils
 {
+    /**
+     * Returns the path to the Unity Hub.
+     * 
+     * @returns Default Unity Hub install directory
+     * 
+     */
     static GetDefaultUnityHubDirectory(): string
     {
         switch (os.platform()) {
@@ -15,6 +21,14 @@ export default class UnityUtils
         }
     }
 
+    /**
+     * Return the path to the Unity executable.
+     * 
+     * @param unityVersion Unity version (e.g. 2021.2.16f1)
+     * @param installDirectory Unity Hub install directory
+     * @returns Unity executable path
+     * 
+     */
     static GenerateUnityPath(unityVersion: string, installDirectory: string): string
     {
         switch (os.platform()) {
