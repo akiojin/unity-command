@@ -14,5 +14,5 @@ jobs:
       - uses: tool3/ncc@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          src: src/main.ts
+          src: src/index.ts
           branch: main
