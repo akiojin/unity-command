@@ -372,6 +372,12 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const fs_1 = __nccwpck_require__(147);
 const os = __importStar(__nccwpck_require__(37));
 class UnityUtils {
+    /**
+     * Returns the path to the Unity Hub.
+     *
+     * @returns Default Unity Hub install directory
+     *
+     */
     static GetDefaultUnityHubDirectory() {
         switch (os.platform()) {
             default:
@@ -382,6 +388,14 @@ class UnityUtils {
                 return "C:/Program Files/Unity/Hub/Editor";
         }
     }
+    /**
+     * Return the path to the Unity executable.
+     *
+     * @param unityVersion Unity version (e.g. 2021.2.16f1)
+     * @param installDirectory Unity Hub install directory
+     * @returns Unity executable path
+     *
+     */
     static GenerateUnityPath(unityVersion, installDirectory) {
         switch (os.platform()) {
             default:
