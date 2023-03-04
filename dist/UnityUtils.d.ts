@@ -1,13 +1,17 @@
 export default class UnityUtils {
+    static GetDefaultUnityHubDirectory(): string;
+    static GenerateUnityPath(unityVersion: string, installDirectory: string): string;
     /**
      * Returns the path to the Unity executable.
      *
-     * @param os platform name (e.g. os.platform())
-     * @param unityVersion Unity version
+     * @param unityVersion Unity version (e.g. 2021.2.16f1)
      * @param installDirectory Unity Hub install directory
      * @returns Execute path
+     *
+     * The installation directory, if omitted, is obtained from the environment variable UNITY_HUB_INSTALL_DIRECTORY.
+     * If the environment variable UNITY_HUB_INSTALL_DIRECTORY is not set, it is taken from the default installation directory.
      */
-    static GetExecutePath(os: string, unityVersion?: string, installDirectory?: string): string;
+    static GetUnityPath(unityVersion: string, installDirectory?: string): string;
     /**
      * Returns the version of Unity used in a given project.
      * The Unity version is obtained from ProjectSettings/ProjectVersion.txt.
@@ -15,5 +19,5 @@ export default class UnityUtils {
      * @param projectDirectory Unity project path
      * @returns Unity version (e.g. 2021.2.16f1)
      */
-    static GetVersion(projectDirectory: string): Promise<string>;
+    static GetCurrentUnityVersion(projectDirectory: string): Promise<string>;
 }

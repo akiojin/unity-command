@@ -21,7 +21,7 @@ builder
     .SetExecuteMethod('MyEditorScript.PerformBuild')
     .Append([ '-CustomCommand', 'Param' ])
 ...
-const exe = Unity.GetExecutePath(os.platform(), '2021.2.7f1')
+const exe = Unity.GetUnityPath('2021.2.7f1')
 execa.execa(exe, builder.Build())
 ```
 
@@ -29,7 +29,7 @@ execa.execa(exe, builder.Build())
 
 ### class `UnityUtils`
 
-#### `static GetVersion(projectDirectory: string): string`
+#### `static GetCurrentUnityVersion(projectDirectory: string): string`
 
 ##### Description
 
@@ -47,18 +47,21 @@ Returns the Unity version set for the given project.
 |:--|:--|
 |`string`|Unity version. (e.g. 2021.2.7f1)|
 
-#### `static GetExecutePath(os: string, unityVersion: string): string`
+#### `static GetUnityPath(unityVersion: string): string`
 
 ##### Description
 
-Returns the Unity execution path.
+Get the path to the Unity editor executable.
 
 ##### Arguments
 
 |Name|Type|Description|
 |:--|:--|:--|
-|`os`|`string`|Name of OS to be used.<br>See [os.platform()][1] for possible values|
 |`unityVersion`|`string`|Unity version to be used|
+|`installDirectory`|`string`|Unity installation directory path.|
+
+The installation directory, if omitted, is obtained from the environment variable UNITY_HUB_INSTALL_DIRECTORY.
+If the environment variable UNITY_HUB_INSTALL_DIRECTORY is not set, it is taken from the default installation directory.
 
 ##### Return
 

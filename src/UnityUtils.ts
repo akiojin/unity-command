@@ -1,34 +1,49 @@
 import { promises as fs } from 'fs'
-import path from 'path'
+import * as os from 'os'
 
 export default class UnityUtils
 {
-    /**
-     * Returns the path to the Unity executable.
-     * 
-     * @param os platform name (e.g. os.platform())
-     * @param unityVersion Unity version
-     * @param installDirectory Unity Hub install directory
-     * @returns Execute path
-     */
-    static GetExecutePath(os: string, unityVersion?: string, installDirectory?: string): string
+    static GetDefaultUnityHubDirectory(): string
     {
-        switch (os) {
+        switch (os.platform()) {
         default:
             throw new Error('Unsupported platform.')
         case 'darwin':
-            if (!unityVersion) {
-                return `/Applications/Unity/Unity.app/Contents/MacOS/Unity`
-            } else {
-                return `/Applications/Unity/Hub/Editor/${unityVersion}/Unity.app/Contents/MacOS/Unity`
-            }
+            return "/Applications/Unity/Hub/Editor"
         case 'win32':
-            if (!installDirectory) {
-                return `"C:\\Program Files\\Unity\\Hub\\Editor\\${unityVersion}\\Editor\\Unity.exe"`
-            } else {
-                return `"${installDirectory}\\${unityVersion}\\Editor\\Unity.exe"`
-            }
+            return "C:/Program Files/Unity/Hub/Editor"
         }
+    }
+
+    static GenerateUnityPath(unityVersion: string, installDirectory: string): string
+    {
+        switch (os.platform()) {
+        default:
+            throw new Error('Unsupported platform.')
+        case 'darwin':
+            return `${installDirectory}/${unityVersion}/Unity.app/Contents/MacOS/Unity`
+        case 'win32':
+            return `"${installDirectory}/${unityVersion}/Editor/Unity.exe"`
+        }
+    }
+
+    /**
+     * Returns the path to the Unity executable.
+     * 
+     * @param unityVersion Unity version (e.g. 2021.2.16f1)
+     * @param installDirectory Unity Hub install directory
+     * @returns Execute path
+     * 
+     * The installation directory, if omitted, is obtained from the environment variable UNITY_HUB_INSTALL_DIRECTORY.
+     * If the environment variable UNITY_HUB_INSTALL_DIRECTORY is not set, it is taken from the default installation directory.
+     */
+    static GetUnityPath(unityVersion: string, installDirectory?: string): string
+    {
+        installDirectory = installDirectory ??
+            process.env.UNITY_HUB_INSTALL_DIRECTORY ??
+            this.GetDefaultUnityHubDirectory()
+
+        return this.GenerateUnityPath(unityVersion, installDirectory)
     }
 
     /**
@@ -38,9 +53,9 @@ export default class UnityUtils
      * @param projectDirectory Unity project path
      * @returns Unity version (e.g. 2021.2.16f1)
      */
-    static async GetVersion(projectDirectory: string): Promise<string>
+    static async GetCurrentUnityVersion(projectDirectory: string): Promise<string>
     {
-        const filePath = path.join(projectDirectory, 'ProjectSettings', 'ProjectVersion.txt')
+        const filePath = `${projectDirectory}/ProjectSettings/ProjectVersion.txt`
         const text = await fs.readFile(filePath, 'utf-8')
 
         const result = text.match(/m_EditorVersion: (?<version>[0-9a-zA-Z.]*)/i)

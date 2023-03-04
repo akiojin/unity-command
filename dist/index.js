@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 57:
+/***/ 531:
 /***/ ((module) => {
 
 /******/ (() => { // webpackBootstrap
@@ -122,13 +122,13 @@ Object.defineProperty(exports, "ArgumentBuilder", ({ enumerable: true, get: func
 
 /***/ }),
 
-/***/ 323:
+/***/ 434:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const argument_builder_1 = __nccwpck_require__(57);
+const argument_builder_1 = __nccwpck_require__(531);
 class UnityCommandBuilder extends argument_builder_1.ArgumentBuilder {
     /**
      * Sets the default argument.
@@ -340,45 +340,72 @@ exports["default"] = UnityCommandBuilder;
 
 /***/ }),
 
-/***/ 25:
+/***/ 427:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const fs_1 = __nccwpck_require__(147);
-const path_1 = __importDefault(__nccwpck_require__(17));
+const os = __importStar(__nccwpck_require__(37));
 class UnityUtils {
-    /**
-     * Returns the path to the Unity executable.
-     *
-     * @param os platform name (e.g. os.platform())
-     * @param unityVersion Unity version
-     * @param installDirectory Unity Hub install directory
-     * @returns Execute path
-     */
-    static GetExecutePath(os, unityVersion, installDirectory) {
-        switch (os) {
+    static GetDefaultUnityHubDirectory() {
+        switch (os.platform()) {
             default:
                 throw new Error('Unsupported platform.');
             case 'darwin':
-                if (!unityVersion) {
-                    return `/Applications/Unity/Unity.app/Contents/MacOS/Unity`;
-                }
-                else {
-                    return `/Applications/Unity/Hub/Editor/${unityVersion}/Unity.app/Contents/MacOS/Unity`;
-                }
+                return "/Applications/Unity/Hub/Editor";
             case 'win32':
-                if (!installDirectory) {
-                    return `"C:\\Program Files\\Unity\\Hub\\Editor\\${unityVersion}\\Editor\\Unity.exe"`;
-                }
-                else {
-                    return `"${installDirectory}\\${unityVersion}\\Editor\\Unity.exe"`;
-                }
+                return "C:/Program Files/Unity/Hub/Editor";
         }
+    }
+    static GenerateUnityPath(unityVersion, installDirectory) {
+        switch (os.platform()) {
+            default:
+                throw new Error('Unsupported platform.');
+            case 'darwin':
+                return `${installDirectory}/${unityVersion}/Unity.app/Contents/MacOS/Unity`;
+            case 'win32':
+                return `"${installDirectory}/${unityVersion}/Editor/Unity.exe"`;
+        }
+    }
+    /**
+     * Returns the path to the Unity executable.
+     *
+     * @param unityVersion Unity version (e.g. 2021.2.16f1)
+     * @param installDirectory Unity Hub install directory
+     * @returns Execute path
+     *
+     * The installation directory, if omitted, is obtained from the environment variable UNITY_HUB_INSTALL_DIRECTORY.
+     * If the environment variable UNITY_HUB_INSTALL_DIRECTORY is not set, it is taken from the default installation directory.
+     */
+    static GetUnityPath(unityVersion, installDirectory) {
+        var _a;
+        installDirectory = (_a = installDirectory !== null && installDirectory !== void 0 ? installDirectory : process.env.UNITY_HUB_INSTALL_DIRECTORY) !== null && _a !== void 0 ? _a : this.GetDefaultUnityHubDirectory();
+        return this.GenerateUnityPath(unityVersion, installDirectory);
     }
     /**
      * Returns the version of Unity used in a given project.
@@ -387,8 +414,8 @@ class UnityUtils {
      * @param projectDirectory Unity project path
      * @returns Unity version (e.g. 2021.2.16f1)
      */
-    static async GetVersion(projectDirectory) {
-        const filePath = path_1.default.join(projectDirectory, 'ProjectSettings', 'ProjectVersion.txt');
+    static async GetCurrentUnityVersion(projectDirectory) {
+        const filePath = `${projectDirectory}/ProjectSettings/ProjectVersion.txt`;
         const text = await fs_1.promises.readFile(filePath, 'utf-8');
         const result = text.match(/m_EditorVersion: (?<version>[0-9a-zA-Z.]*)/i);
         if (result === null || result.groups == null) {
@@ -402,7 +429,7 @@ exports["default"] = UnityUtils;
 
 /***/ }),
 
-/***/ 860:
+/***/ 342:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -412,9 +439,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UnityCommandBuilder = exports.UnityUtils = void 0;
-var UnityUtils_1 = __nccwpck_require__(25);
+var UnityUtils_1 = __nccwpck_require__(427);
 Object.defineProperty(exports, "UnityUtils", ({ enumerable: true, get: function () { return __importDefault(UnityUtils_1).default; } }));
-var UnityCommandBuilder_1 = __nccwpck_require__(323);
+var UnityCommandBuilder_1 = __nccwpck_require__(434);
 Object.defineProperty(exports, "UnityCommandBuilder", ({ enumerable: true, get: function () { return __importDefault(UnityCommandBuilder_1).default; } }));
 
 
@@ -428,11 +455,11 @@ module.exports = require("fs");
 
 /***/ }),
 
-/***/ 17:
+/***/ 37:
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("path");
+module.exports = require("os");
 
 /***/ })
 
@@ -478,7 +505,7 @@ module.exports = require("path");
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(860);
+/******/ 	var __webpack_exports__ = __nccwpck_require__(342);
 /******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()
