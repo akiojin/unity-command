@@ -417,8 +417,9 @@ class UnityUtils {
      * If the environment variable UNITY_HUB_INSTALL_DIRECTORY is not set, it is taken from the default installation directory.
      */
     static GetUnityPath(unityVersion, installDirectory) {
-        var _a;
-        installDirectory = (_a = installDirectory !== null && installDirectory !== void 0 ? installDirectory : process.env.UNITY_HUB_INSTALL_DIRECTORY) !== null && _a !== void 0 ? _a : this.GetDefaultUnityHubDirectory();
+        installDirectory = installDirectory ||
+            process.env.UNITY_HUB_INSTALL_DIRECTORY ||
+            this.GetDefaultUnityHubDirectory();
         return this.GenerateUnityPath(unityVersion, installDirectory);
     }
     /**

@@ -53,8 +53,8 @@ export default class UnityUtils
      */
     static GetUnityPath(unityVersion: string, installDirectory?: string): string
     {
-        installDirectory = installDirectory ??
-            process.env.UNITY_HUB_INSTALL_DIRECTORY ??
+        installDirectory = installDirectory ||
+            process.env.UNITY_HUB_INSTALL_DIRECTORY ||
             this.GetDefaultUnityHubDirectory()
 
         return this.GenerateUnityPath(unityVersion, installDirectory)
