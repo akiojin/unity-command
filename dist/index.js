@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 436:
+/***/ 782:
 /***/ ((module) => {
 
 /******/ (() => { // webpackBootstrap
@@ -122,13 +122,13 @@ Object.defineProperty(exports, "ArgumentBuilder", ({ enumerable: true, get: func
 
 /***/ }),
 
-/***/ 612:
+/***/ 953:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const argument_builder_1 = __nccwpck_require__(436);
+const argument_builder_1 = __nccwpck_require__(782);
 class UnityCommandBuilder extends argument_builder_1.ArgumentBuilder {
     /**
      * Sets the default argument.
@@ -340,7 +340,7 @@ exports["default"] = UnityCommandBuilder;
 
 /***/ }),
 
-/***/ 394:
+/***/ 345:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -444,7 +444,7 @@ exports["default"] = UnityUtils;
 
 /***/ }),
 
-/***/ 713:
+/***/ 144:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -454,9 +454,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UnityCommandBuilder = exports.UnityUtils = void 0;
-var UnityUtils_1 = __nccwpck_require__(394);
+var UnityUtils_1 = __nccwpck_require__(345);
 Object.defineProperty(exports, "UnityUtils", ({ enumerable: true, get: function () { return __importDefault(UnityUtils_1).default; } }));
-var UnityCommandBuilder_1 = __nccwpck_require__(612);
+var UnityCommandBuilder_1 = __nccwpck_require__(953);
 Object.defineProperty(exports, "UnityCommandBuilder", ({ enumerable: true, get: function () { return __importDefault(UnityCommandBuilder_1).default; } }));
 
 
@@ -520,7 +520,7 @@ module.exports = require("os");
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(713);
+/******/ 	var __webpack_exports__ = __nccwpck_require__(144);
 /******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()
