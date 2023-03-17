@@ -4,16 +4,12 @@ on: push
 
 jobs:
   Build:
-    runs-on: ${{ matrix.OS }}
+    runs-on: ubuntu-latest
     timeout-minutes: 5
-    strategy:
-      matrix:
-        OS: [ ubuntu-latest, macos-latest, windows-latest ]
 
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm install
-      - run: npx @vercel/ncc build src/index.ts
+      - run: npm run build
