@@ -1,8 +1,33 @@
+import * as core from '@actions/core'
 import { promises as fs } from 'fs'
 import * as os from 'os'
 
 export default class UnityUtils
 {
+    static GetBuildTarget(): string
+    {
+        const buildTarget = core.getInput('build-target')
+
+        switch (buildTarget.toLowerCase()) {
+        default:
+            throw Error(`Not supported platform. Target=${buildTarget}`)
+        case 'ios':
+        case 'iphone':
+            return 'iOS'
+        case 'android':
+            return 'Android'
+        case 'windows':
+        case 'win':
+        case 'win64':
+            return 'Win64'
+        case 'mac':
+        case 'macos':
+        case 'osx':
+        case 'osxuniversal':
+            return 'OSXUniversal'
+        }
+    }
+    
     /**
      * Returns the path to the Unity Hub.
      * 

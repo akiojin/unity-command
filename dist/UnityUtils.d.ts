@@ -1,4 +1,5 @@
 export default class UnityUtils {
+    static GetBuildTarget(): string;
     /**
      * Returns the path to the Unity Hub.
      *
