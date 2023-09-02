@@ -19,6 +19,9 @@ if [ "$ANSWER" != "Y" ] && [ "$ANSWER" != "y" ]; then
   exit 1
 fi
 
+npm run clean
+npm run build
+
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 if [ "$1" != "prerelease" ]; then
@@ -36,6 +39,8 @@ else
 
     VERSION=$(npm version prerelease --preid rc)
 fi
+
+npm publish --access public
 
 git pull
 git add package.json package-lock.json
