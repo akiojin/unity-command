@@ -105,4 +105,85 @@ export default class UnityUtils
     
         return result.groups.version
     }
+
+    private static GetPlatformName(target: string): string
+    {
+        switch (target.toLowerCase()) {
+        default:
+            return target
+        case 'ios':
+        case 'iphone':
+            return 'iPhone'
+        case 'android':
+            return 'Android'
+        case 'windows':
+        case 'win':
+        case 'win64':
+        case 'mac':
+        case 'macos':
+        case 'osx':
+        case 'osxuniversal':
+            return 'Standalone'
+        }
+    }
+    
+    /**
+     * 
+     * @param buildTarget 
+     * @param symbols 
+     * @param projectDirectory 
+     * @returns 
+     */
+    static async AddDefineSymbols(buildTarget: string, symbols: string, projectDirectory: string): Promise<string>
+    {
+        const target = UnityUtils.GetPlatformName(buildTarget)
+        const filePath = `${projectDirectory}/ProjectSettings/ProjectSettings.asset`
+        const contents = await fs.readFile(filePath, 'utf-8')
+        const updatedContents = []
+    
+        let reachedSection = false
+    
+        for (const line of contents.split('\n')) {
+            const trim = line.trim()
+    
+            if (trim.startsWith('scriptingDefineSymbols:')) {
+                reachedSection = true
+            }
+    
+            if (reachedSection && trim.startsWith(target)) {
+                updatedContents.push(`${line};${symbols}`)
+                reachedSection = false
+            } else {
+                updatedContents.push(line)
+            }
+        }
+    
+        const result = updatedContents.join('\n')
+        await fs.writeFile(filePath, result, 'utf-8')
+    
+        return result
+    }
+
+    static async GetDefineSymbols(buildTarget: string, projectDirectory: string): Promise<string>
+    {
+        const target = UnityUtils.GetPlatformName(buildTarget)
+        const filePath = `${projectDirectory}/ProjectSettings/ProjectSettings.asset`
+        const contents = await fs.readFile(filePath, 'utf-8')
+    
+        let reachedSection = false
+    
+        for (const line of contents.split('\n')) {
+            const trim = line.trim()
+    
+            if (trim.startsWith('scriptingDefineSymbols:')) {
+                reachedSection = true
+            }
+    
+            if (reachedSection && trim.startsWith(target)) {
+                return trim.split(':')[1].trim()
+            }
+        }
+
+        throw new Error('Define symbols not found.')
+    }
 }

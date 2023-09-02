@@ -35,4 +35,14 @@ export default class UnityUtils {
      * @returns Unity version (e.g. 2021.2.16f1)
      */
     static GetCurrentUnityVersion(projectDirectory: string): Promise<string>;
+    private static GetPlatformName;
+    /**
+     *
+     * @param buildTarget
+     * @param symbols
+     * @param projectDirectory
+     * @returns
+     */
+    static AddDefineSymbols(buildTarget: string, symbols: string, projectDirectory: string): Promise<string>;
+    static GetDefineSymbols(buildTarget: string, projectDirectory: string): Promise<string>;
 }

@@ -3162,6 +3162,71 @@ class UnityUtils {
         }
         return result.groups.version;
     }
+    static GetPlatformName(target) {
+        switch (target.toLowerCase()) {
+            default:
+                return target;
+            case 'ios':
+            case 'iphone':
+                return 'iPhone';
+            case 'android':
+                return 'Android';
+            case 'windows':
+            case 'win':
+            case 'win64':
+            case 'mac':
+            case 'macos':
+            case 'osx':
+            case 'osxuniversal':
+                return 'Standalone';
+        }
+    }
+    /**
+     *
+     * @param buildTarget
+     * @param symbols
+     * @param projectDirectory
+     * @returns
+     */
+    static async AddDefineSymbols(buildTarget, symbols, projectDirectory) {
+        const target = UnityUtils.GetPlatformName(buildTarget);
+        const filePath = `${projectDirectory}/ProjectSettings/ProjectSettings.asset`;
+        const contents = await fs_1.promises.readFile(filePath, 'utf-8');
+        const updatedContents = [];
+        let reachedSection = false;
+        for (const line of contents.split('\n')) {
+            const trim = line.trim();
+            if (trim.startsWith('scriptingDefineSymbols:')) {
+                reachedSection = true;
+            }
+            if (reachedSection && trim.startsWith(target)) {
+                updatedContents.push(`${line};${symbols}`);
+                reachedSection = false;
+            }
+            else {
+                updatedContents.push(line);
+            }
+        }
+        const result = updatedContents.join('\n');
+        await fs_1.promises.writeFile(filePath, result, 'utf-8');
+        return result;
+    }
+    static async GetDefineSymbols(buildTarget, projectDirectory) {
+        const target = UnityUtils.GetPlatformName(buildTarget);
+        const filePath = `${projectDirectory}/ProjectSettings/ProjectSettings.asset`;
+        const contents = await fs_1.promises.readFile(filePath, 'utf-8');
+        let reachedSection = false;
+        for (const line of contents.split('\n')) {
+            const trim = line.trim();
+            if (trim.startsWith('scriptingDefineSymbols:')) {
+                reachedSection = true;
+            }
+            if (reachedSection && trim.startsWith(target)) {
+                return trim.split(':')[1].trim();
+            }
+        }
+        throw new Error('Define symbols not found.');
+    }
 }
 exports["default"] = UnityUtils;
 
