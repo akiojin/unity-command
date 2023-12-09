@@ -8,10 +8,20 @@ export default class UnityCommandBuilder extends ArgumentBuilder
     constructor()
     {
         super()
-        this.Append('-quit')
-            .Append('-batchmode')
+        this.Append('-batchmode')
             .Append('-nographics')
             .Append('-silent-crashes')
+    }
+
+    /**
+     * Exit the Unity editor after the command has finished executing.
+     * 
+     * @returns this
+     */
+    Quit(): UnityCommandBuilder
+    {
+        this.Append('-quit')
+        return this
     }
 
     /**

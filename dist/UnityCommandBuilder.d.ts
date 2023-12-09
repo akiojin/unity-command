@@ -5,6 +5,12 @@ export default class UnityCommandBuilder extends ArgumentBuilder {
      */
     constructor();
     /**
+     * Exit the Unity editor after the command has finished executing.
+     *
+     * @returns this
+     */
+    Quit(): UnityCommandBuilder;
+    /**
      * Disable Graphics Processing Unit (GPU) skinning at startup.
      *
      * @returns this
