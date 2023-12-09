@@ -3094,6 +3094,8 @@ class UnityUtils {
             case 'osx':
             case 'osxuniversal':
                 return 'OSXUniversal';
+            case 'switch':
+                return 'Switch';
         }
     }
     /**
