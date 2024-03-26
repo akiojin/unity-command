@@ -2838,7 +2838,6 @@ class UnityCommandBuilder extends argument_builder_1.ArgumentBuilder {
     constructor() {
         super();
         this.Append('-batchmode')
-            .Append('-nographics')
             .Append('-silent-crashes');
     }
     /**
@@ -2848,6 +2847,18 @@ class UnityCommandBuilder extends argument_builder_1.ArgumentBuilder {
      */
     Quit() {
         this.Append('-quit');
+        return this;
+    }
+    /**
+     * When you run this in batch mode, Unity doesn’t initialize the graphics device.
+     * You can then run automated workflows on machines that don’t have a GPU.
+     * Automated workflows only work when you have a window in focus, otherwise you can’t send simulated input commands.
+     * -nographics does not allow you to bake GI, because Enlighten requires a GPU for Meta Pass rendering.
+     *
+     * @returns this
+     */
+    NoGraphics() {
+        this.Append('-nographics');
         return this;
     }
     /**
