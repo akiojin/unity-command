@@ -35,7 +35,7 @@
     "@types/node": "20.5.8",
     "@vercel/ncc": "0.36.1",
     "husky": "9.0.11",
-    "rimraf": "5.0.1",
+    "rimraf": "5.0.7",
     "typescript": "5.2.2"
   },
   "private": false
