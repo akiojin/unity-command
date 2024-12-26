@@ -201,6 +201,22 @@ export default class UnityCommandBuilder extends ArgumentBuilder
     // Build Arguments
 
     /**
+     * Set the build profile saved at the given path as an active build profile
+     * (for example, -activeBuildProfile "Assets/Settings/Build Profiles/WindowsDemo.asset").
+     * 
+     * Note: -activeBuildProfile <pathname> applies custom scripting defines found in the Build data section of the active build profile before compilation.
+     * These scripting defines are additive and don’t override other scripting defines in your project.
+     * 
+     * @param pathname 
+     * @returns this
+     */
+    ActiveBuildProfile(pathname: string): UnityCommandBuilder
+    {
+        this.Append('-activeBuildProfile', pathname)
+        return this
+    }
+
+    /**
      * Select an active build target before loading a project.
      * 
      * Possible options are:
