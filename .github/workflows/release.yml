@@ -24,7 +24,7 @@ jobs:
       - name: 🌱 Checkout to the branch
         uses: actions/checkout@v4
 
-      - name: ⬆️ GitHub Release
+      - name: 🚀 GitHub Release
         run: |
           VERSION=$(jq -r .version package.json)
           gh release create v$VERSION --generate-notes --target main
