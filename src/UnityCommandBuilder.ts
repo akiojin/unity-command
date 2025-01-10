@@ -9,7 +9,6 @@ export default class UnityCommandBuilder extends ArgumentBuilder
     {
         super()
         this.Append('-batchmode')
-            .Append('-nographics')
             .Append('-silent-crashes')
     }
 
@@ -21,6 +20,20 @@ export default class UnityCommandBuilder extends ArgumentBuilder
     Quit(): UnityCommandBuilder
     {
         this.Append('-quit')
+        return this
+    }
+
+    /**
+     * When you run this in batch mode, Unity doesn’t initialize the graphics device.
+     * You can then run automated workflows on machines that don’t have a GPU.
+     * Automated workflows only work when you have a window in focus, otherwise you can’t send simulated input commands.
+     * -nographics does not allow you to bake GI, because Enlighten requires a GPU for Meta Pass rendering.
+     * 
+     * @returns this
+     */
+    NoGraphics(): UnityCommandBuilder
+    {
+        this.Append('-nographics')
         return this
     }
 
@@ -186,6 +199,22 @@ export default class UnityCommandBuilder extends ArgumentBuilder
     }
 
     // Build Arguments
+
+    /**
+     * Set the build profile saved at the given path as an active build profile
+     * (for example, -activeBuildProfile "Assets/Settings/Build Profiles/WindowsDemo.asset").
+     * 
+     * Note: -activeBuildProfile <pathname> applies custom scripting defines found in the Build data section of the active build profile before compilation.
+     * These scripting defines are additive and don’t override other scripting defines in your project.
+     * 
+     * @param pathname 
+     * @returns this
+     */
+    ActiveBuildProfile(pathname: string): UnityCommandBuilder
+    {
+        this.Append('-activeBuildProfile', pathname)
+        return this
+    }
 
     /**
      * Select an active build target before loading a project.

@@ -74,9 +74,7 @@ If the environment variable UNITY_HUB_INSTALL_DIRECTORY is not set, it is taken 
 
 The following parameters have already been added by default when the instance is created, so they do not need to be added.
 
-- `-quit`
 - `-batchmode`
-- `-nographics`
 - `-silent-crashes`
 
 
