@@ -29,4 +29,4 @@ jobs:
           VERSION=$(jq -r .version package.json)
           gh release create v$VERSION --generate-notes --target main
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
