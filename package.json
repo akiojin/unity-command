@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/akiojin/unity-command#readme",
   "dependencies": {
-    "@akiojin/argument-builder": "1.0.0"
+    "@akiojin/argument-builder": "1.0.3"
   },
   "devDependencies": {
     "@actions/core": "1.11.1",
