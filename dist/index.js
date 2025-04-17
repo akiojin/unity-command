@@ -3136,7 +3136,7 @@ function copyFile(srcFile, destFile, force) {
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 356:
+/***/ 769:
 /***/ (function(__unused_webpack_module, exports) {
 
 
@@ -3179,13 +3179,13 @@ class ArgumentBuilder {
         return __classPrivateFieldGet(this, _ArgumentBuilder_args, "f").join(' ');
     }
 }
-exports["default"] = ArgumentBuilder;
 _ArgumentBuilder_args = new WeakMap();
+exports["default"] = ArgumentBuilder;
 
 
 /***/ }),
 
-/***/ 925:
+/***/ 407:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require2_) {
 
 
@@ -3194,7 +3194,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ArgumentBuilder = void 0;
-var ArgumentBuilder_1 = __nccwpck_require2_(356);
+var ArgumentBuilder_1 = __nccwpck_require2_(769);
 Object.defineProperty(exports, "ArgumentBuilder", ({ enumerable: true, get: function () { return __importDefault(ArgumentBuilder_1).default; } }));
 
 
@@ -3242,7 +3242,7 @@ Object.defineProperty(exports, "ArgumentBuilder", ({ enumerable: true, get: func
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __nested_webpack_exports__ = __nccwpck_require2_(925);
+/******/ 	var __nested_webpack_exports__ = __nccwpck_require2_(407);
 /******/ 	module.exports = __nested_webpack_exports__;
 /******/ 	
 /******/ })()
@@ -3845,6 +3845,9 @@ class UnityUtils {
                 return 'OSXUniversal';
             case 'switch':
                 return 'Switch';
+            case 'webgl':
+            case 'web':
+                return 'WebGL';
         }
     }
     /**
@@ -3930,6 +3933,9 @@ class UnityUtils {
             case 'osx':
             case 'osxuniversal':
                 return 'Standalone';
+            case 'webgl':
+            case 'web':
+                return 'WebGL';
         }
     }
     /**

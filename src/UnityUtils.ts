@@ -27,14 +27,17 @@ export default class UnityUtils
             return 'OSXUniversal'
         case 'switch':
             return 'Switch'
+        case 'webgl':
+        case 'web':
+            return 'WebGL'
         }
     }
-    
+
     /**
      * Returns the path to the Unity Hub.
-     * 
+     *
      * @returns Default Unity Hub install directory
-     * 
+     *
      */
     static GetDefaultUnityHubDirectory(): string
     {
@@ -50,11 +53,11 @@ export default class UnityUtils
 
     /**
      * Return the path to the Unity executable.
-     * 
+     *
      * @param unityVersion Unity version (e.g. 2021.2.16f1)
      * @param installDirectory Unity Hub install directory
      * @returns Unity executable path
-     * 
+     *
      */
     static GenerateUnityPath(unityVersion: string, installDirectory: string): string
     {
@@ -70,11 +73,11 @@ export default class UnityUtils
 
     /**
      * Returns the path to the Unity executable.
-     * 
+     *
      * @param unityVersion Unity version (e.g. 2021.2.16f1)
      * @param installDirectory Unity Hub install directory
      * @returns Execute path
-     * 
+     *
      * The installation directory, if omitted, is obtained from the environment variable UNITY_HUB_INSTALL_DIRECTORY.
      * If the environment variable UNITY_HUB_INSTALL_DIRECTORY is not set, it is taken from the default installation directory.
      */
@@ -90,7 +93,7 @@ export default class UnityUtils
     /**
      * Returns the version of Unity used in a given project.
      * The Unity version is obtained from ProjectSettings/ProjectVersion.txt.
-     * 
+     *
      * @param projectDirectory Unity project path
      * @returns Unity version (e.g. 2021.2.16f1)
      */
@@ -100,11 +103,11 @@ export default class UnityUtils
         const text = await fs.readFile(filePath, 'utf-8')
 
         const result = text.match(/m_EditorVersion: (?<version>[0-9a-zA-Z.]*)/i)
-    
+
         if (result === null || result.groups == null) {
             throw new Error('Invalid ProjectVersion.txt')
         }
-    
+
         return result.groups.version
     }
 
@@ -126,15 +129,18 @@ export default class UnityUtils
         case 'osx':
         case 'osxuniversal':
             return 'Standalone'
+        case 'webgl':
+        case 'web':
+            return 'WebGL'
         }
     }
-    
+
     /**
-     * 
-     * @param buildTarget 
-     * @param symbols 
-     * @param projectDirectory 
-     * @returns 
+     *
+     * @param buildTarget
+     * @param symbols
+     * @param projectDirectory
+     * @returns
      */
     static async AddDefineSymbols(buildTarget: string, symbols: string, projectDirectory: string): Promise<string>
     {
@@ -142,16 +148,16 @@ export default class UnityUtils
         const filePath = `${projectDirectory}/ProjectSettings/ProjectSettings.asset`
         const contents = await fs.readFile(filePath, 'utf-8')
         const updatedContents = []
-    
+
         let reachedSection = false
-    
+
         for (const line of contents.split('\n')) {
             const trim = line.trim()
-    
+
             if (trim.startsWith('scriptingDefineSymbols:')) {
                 reachedSection = true
             }
-    
+
             if (reachedSection && trim.startsWith(target)) {
                 updatedContents.push(`${line};${symbols}`)
                 reachedSection = false
@@ -159,10 +165,10 @@ export default class UnityUtils
                 updatedContents.push(line)
             }
         }
-    
+
         const result = updatedContents.join('\n')
         await fs.writeFile(filePath, result, 'utf-8')
-    
+
         return result
     }
 
@@ -171,16 +177,16 @@ export default class UnityUtils
         const target = UnityUtils.GetPlatformName(buildTarget)
         const filePath = `${projectDirectory}/ProjectSettings/ProjectSettings.asset`
         const contents = await fs.readFile(filePath, 'utf-8')
-    
+
         let reachedSection = false
-    
+
         for (const line of contents.split('\n')) {
             const trim = line.trim()
-    
+
             if (trim.startsWith('scriptingDefineSymbols:')) {
                 reachedSection = true
             }
-    
+
             if (reachedSection && trim.startsWith(target)) {
                 return trim.split(':')[1].trim()
             }
