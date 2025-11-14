@@ -3860,6 +3860,9 @@ class UnityUtils {
         switch (os.platform()) {
             default:
                 throw new Error('Unsupported platform.');
+            case 'linux':
+                const homeDir = os.homedir();
+                return `${homeDir}/Unity/Hub/Editor`;
             case 'darwin':
                 return "/Applications/Unity/Hub/Editor";
             case 'win32':
@@ -3878,6 +3881,8 @@ class UnityUtils {
         switch (os.platform()) {
             default:
                 throw new Error('Unsupported platform.');
+            case 'linux':
+                return `${installDirectory}/${unityVersion}/Editor/Unity`;
             case 'darwin':
                 return `${installDirectory}/${unityVersion}/Unity.app/Contents/MacOS/Unity`;
             case 'win32':
